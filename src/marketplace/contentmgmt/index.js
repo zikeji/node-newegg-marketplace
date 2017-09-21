@@ -1,13 +1,16 @@
 'use strict';
 
 import item from './item';
+import manufacturer from './manufacturer';
 
 export default class contentmgmt {
-  constructor(queryWrapper) {
-    this._query = queryWrapper;
-    this.item = new item(this._query);
+  constructor(querywrapper) {
+    this.querywrapper = querywrapper;
+    this.item = new item(this.querywrapper);
+    this.manufacturer = new manufacturer(this.querywrapper);
   }
+
   servicestatus() {
-    return this._query.get('/contentmgmt/servicestatus');
+    return this.querywrapper.query('GET', '/contentmgmt/servicestatus');
   }
 }

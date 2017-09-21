@@ -1,17 +1,23 @@
 'use strict';
 
 export default class item {
-  constructor(queryWrapper) {
-    this._query = queryWrapper;
+  constructor(querywrapper) {
+    this.querywrapper = querywrapper;
   }
 
-  inventory(data) {
-    return this._query.post('/contentmgmt/item/inventory', data);
+  inventory(method, data) {
+    return this.querywrapper.query(method, '/contentmgmt/item/inventory', data);
   }
-  price(data) {
-    return this._query.post('/contentmgmt/item/price', data);
+
+  price(method, data) {
+    return this.querywrapper.query(method, '/contentmgmt/item/price', data);
   }
-  inventoryandprice(data) {
-    return this._query.put('/contentmgmt/item/inventory', data);
+
+  inventoryandprice(method, data) {
+    return this.querywrapper.query(method, '/contentmgmt/item/inventory', data);
+  }
+
+  volumediscount(method, data) {
+    return this.querywrapper.query(method, '/contentmgmt/item/volumediscount', data);
   }
 }
