@@ -3,52 +3,58 @@
 import rp from 'request-promise-native';
 
 export default class querywrapper {
-  constructor(sellerId, authorization, secretKey, apiUrl) {
+  constructor(sellerId, authorization, secretKey, failover) {
     this._sellerId = sellerId;
     this._authorization = authorization;
     this._secretKey = secretKey;
-    this._apiUrl = apiUrl;
+    this._failover = failover || true;
+    this._apiUrls = ['https://api.newegg.com/marketplace', 'https://api01.newegg.com/marketplace', 'https://api02.newegg.com/marketplace'];
     this._apiVersion = 304;
-  }
-
-  _query(method, endpoint, data) {
-    const _this = this;
-    return new Promise((resolve, reject) => {
-      const options = {
-        method,
-        uri: `${_this._apiUrl}${endpoint}?sellerid=${_this._sellerId}&version=${_this._apiVersion}`,
-        headers: {
-          Authorization: _this._authorization,
-          SecretKey: _this._secretKey,
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        json: true,
-      };
-      if (data) options.body = data;
-      rp(options)
-        .then(response => {
-          resolve(response);
-        })
-        .catch(response => {
-          reject(response.error);
-        });
+    this._rp = rp.defaults({
+      timeout: 15 * 1000,
+      headers: {
+        Authorization: this._authorization,
+        SecretKey: this._secretKey,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      json: true,
     });
   }
 
-  get(endpoint, data) {
-    return this._query('GET', endpoint, data);
-  }
-
-  post(endpoint, data) {
-    return this._query('POST', endpoint, data);
-  }
-
-  put(endpoint, data) {
-    return this._query('PUT', endpoint, data);
-  }
-
-  delete(endpoint, data) {
-    return this._query('DELETE', endpoint, data);
+  query(method, endpoint, data, apiUrlIndex) {
+    const _this = this;
+    if (!apiUrlIndex) apiUrlIndex = 0;
+    return new Promise((resolve, reject) => {
+      const options = {
+        method,
+        uri: `${_this._apiUrls[apiUrlIndex]}${endpoint}?sellerid=${_this._sellerId}&version=${_this._apiVersion}`,
+      };
+      if (data) options.body = data;
+      _this
+        ._rp(options)
+        .then(response => {
+          if (typeof response === 'string') {
+            resolve(JSON.parse(response.trim()));
+          } else {
+            resolve(response);
+          }
+        })
+        .catch(response => {
+          if (response.error && response.error.code && response.error.code === 'ETIMEDOUT') {
+            ++apiUrlIndex;
+            if (_this._apiUrls[apiUrlIndex]) {
+              _this
+                ._query(method, endpoint, data, apiUrlIndex)
+                .then(resolve)
+                .catch(reject);
+            } else {
+              reject(response.error);
+            }
+          } else {
+            reject(response.error);
+          }
+        });
+    });
   }
 }
