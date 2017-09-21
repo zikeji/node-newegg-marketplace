@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "es5",
+  "prettier.bracketSpacing": true,
+  "prettier.bracesSpacing": true,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 150,
+  "prettier.arrowParens": false
+}
