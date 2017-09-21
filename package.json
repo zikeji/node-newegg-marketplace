@@ -1,0 +1,41 @@
+{
+  "name": "newegg-marketplace",
+  "version": "0.0.1",
+  "description": "Newegg Marketplace API Wrapper for Node.js",
+  "license": "MIT",
+  "homepage": "https://github.com/zikeji/node-newegg-marketplace",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zikeji/node-newegg-marketplace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zikeji/node-newegg-marketplace/issues"
+  },
+  "main": "./out/src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d out/src"
+  },
+  "engines": {
+    "node": ">= 6.10.0"
+  },
+  "author": {
+    "name": "Caleb Blankemeyer",
+    "email": "caleb@blankemeyer.us",
+    "url": "https://github.com/zikeji"
+  },
+  "dependencies": {
+    "request": "^2.82.0",
+    "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "eslint": "^3.2.0",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-plugin-import": "^1.12.0",
+    "prettier-eslint": "^6.4.2"
+  },
+  "keywords": ["newegg", "api", "wrapper", "marketplace", "sellers"],
+  "files": ["out/src", "README.md", "LICENSE.md"]
+}

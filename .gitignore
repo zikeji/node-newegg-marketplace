@@ -1,0 +1,14 @@
+npm-debug.log*
+
+pids
+*.pids*.seed
+
+node_modules
+
+node_*.tmp
+
+config.conf
+
+out
+
+tests
