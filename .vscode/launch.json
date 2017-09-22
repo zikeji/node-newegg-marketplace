@@ -16,6 +16,14 @@
       "cwd": "${workspaceRoot}/dev-utils/newegg-marketplace-api-docparser",
       "program": "${workspaceRoot}/dev-utils/newegg-marketplace-api-docparser/index.js",
       "args": ["NeweggMarketplaceAPIDeveloperGuide_V3.07.pdf", "out.json"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Generate Library",
+      "cwd": "${workspaceRoot}/dev-utils/newegg-marketplace-library-generator",
+      "program": "${workspaceRoot}/dev-utils/newegg-marketplace-library-generator/index.js",
+      "args": ["../newegg-marketplace-api-docparser/out.json", "marketplace"]
     }
   ]
 }
