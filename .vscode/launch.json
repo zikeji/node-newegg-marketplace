@@ -8,6 +8,14 @@
       "program": "${workspaceRoot}/tests/index.js",
       "skipFiles": ["${workspaceRoot}/node_modules/**/*.js"],
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/babel-node"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Generate API Method JSON",
+      "cwd": "${workspaceRoot}/dev-utils/newegg-marketplace-api-docparser",
+      "program": "${workspaceRoot}/dev-utils/newegg-marketplace-api-docparser/index.js",
+      "args": ["NeweggMarketplaceAPIDeveloperGuide_V3.07.pdf", "out.json"]
     }
   ]
 }
