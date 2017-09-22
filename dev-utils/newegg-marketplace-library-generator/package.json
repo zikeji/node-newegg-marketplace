@@ -1,7 +1,7 @@
 {
-  "name": "newegg-marketplace-api-docparser",
+  "name": "newegg-marketplace-library-generator",
   "version": "1.0.0",
-  "description": "Extracts API Specs from the developer guide by Newegg.",
+  "description": "Uses output from newegg-marketplace-api-docparser to generate the library used.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,8 +15,5 @@
     "email": "me@zikeji.com",
     "url": "https://github.com/zikeji"
   },
-  "dependencies": {
-    "pdf2json": "^1.1.7",
-    "split": "^1.0.1"
-  }
+  "dependencies": {}
 }

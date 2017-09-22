@@ -1,0 +1,1 @@
+This folder contains custom utilities I created to generate the parse the PDF, generate the API, and generate the README. **newegg-marketplace-api-docparser** returns JSON which is used in both **newegg-marketplace-library-generator** and **newegg-marketplace-readme-generator**.

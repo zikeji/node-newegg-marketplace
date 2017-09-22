@@ -1,5 +1,5 @@
 'use strict';
 
-import NeweggMarketplaceAPI from './marketplace';
+import NeweggMarketplaceAPI from './Marketplace';
 
 module.exports = NeweggMarketplaceAPI;
