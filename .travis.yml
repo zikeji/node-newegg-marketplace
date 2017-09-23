@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 6
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y unzip
+  - cd dev-utils/newegg-marketplace-api-docparser && wget https://sellerportal.newegg.com/Guideline/Newegg_Marketplace_API_DeveloperGuide.zip && unzip Newegg_Marketplace_API_DeveloperGuide.zip
+install:
+  - npm install
+  - cd dev-utils/newegg-marketplace-api-docparser && npm install
+  - cd dev-utils/newegg-marketplace-library-generator && npm install
+script:
+  - cd dev-utils/newegg-marketplace-api-docparser && node index.js NeweggMarketplaceAPIDeveloperGuide_*.pdf out.json
+  - rm -rf src/Marketplace
+  - cd dev-utils/newegg-marketplace-library-generator && node index.js ../newegg-marketplace-api-docparser/out.json ../../src/Marketplace
+  - npm build
