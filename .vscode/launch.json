@@ -24,6 +24,14 @@
       "cwd": "${workspaceRoot}/dev-utils/newegg-marketplace-library-generator",
       "program": "${workspaceRoot}/dev-utils/newegg-marketplace-library-generator/index.js",
       "args": ["../newegg-marketplace-api-docparser/out.json", "marketplace"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Generate Readme",
+      "cwd": "${workspaceRoot}/dev-utils/newegg-marketplace-readme-generator",
+      "program": "${workspaceRoot}/dev-utils/newegg-marketplace-readme-generator/index.js",
+      "args": ["../newegg-marketplace-api-docparser/out.json", "../../API.md"]
     }
   ]
 }
