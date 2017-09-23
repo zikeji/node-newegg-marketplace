@@ -23,7 +23,7 @@
       "name": "Generate Library",
       "cwd": "${workspaceRoot}/dev-utils/newegg-marketplace-library-generator",
       "program": "${workspaceRoot}/dev-utils/newegg-marketplace-library-generator/index.js",
-      "args": ["../newegg-marketplace-api-docparser/out.json", "marketplace"]
+      "args": ["../newegg-marketplace-api-docparser/out.json", "../../src/Marketplace"]
     },
     {
       "type": "node",

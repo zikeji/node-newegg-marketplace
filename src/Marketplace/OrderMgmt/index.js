@@ -5,8 +5,8 @@ export default class OrderMgmt {
     this.QueryWrapper = QueryWrapper;
   }
 
-  GetOrderStatus(ordernumber, data) {
-    return this.QueryWrapper.query('GET', `/marketplace/ordermgmt/orderstatus/orders/${ordernumber}`, data);
+  GetOrderStatus(ordernumber) {
+    return this.QueryWrapper.query('GET', `/marketplace/ordermgmt/orderstatus/orders/${ordernumber}`, null);
   }
   UpdateOrder(ordernumber, data) {
     return this.QueryWrapper.query('PUT', `/marketplace/ordermgmt/orderstatus/orders/${ordernumber}`, data);

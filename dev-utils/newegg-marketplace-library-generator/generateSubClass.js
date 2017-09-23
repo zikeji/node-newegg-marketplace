@@ -21,8 +21,15 @@ export default class ${curClass} {
         queryParams.push(param.identifier);
       }
     });
-    out += `data) {
-    return this.QueryWrapper.query('${curFunction.method}', ${useTemplate ? '`' : "'"}${curFunction.endpoint}${useTemplate ? '`' : "'"}, data`;
+    if (curFunction.method === 'GET') {
+      out = out.slice(0, -2);
+    } else {
+      out += 'data';
+    }
+    out += ') {\n';
+    out += `    return this.QueryWrapper.query('${curFunction.method}', ${useTemplate ? '`' : "'"}${curFunction.endpoint}${useTemplate
+      ? '`'
+      : "'"}, ${curFunction.method === 'GET' ? 'null' : 'data'}`;
 
     if (queryParams.length > 0) {
       out += ', [\n';

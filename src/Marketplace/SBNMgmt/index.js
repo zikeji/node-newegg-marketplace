@@ -14,8 +14,8 @@ export default class SBNMgmt {
   GetInboundShipmentStatus(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/sbnmgmt/inboundshipment/shipmentstatus', data);
   }
-  GetInboundShipmentResult(requestid, data) {
-    return this.QueryWrapper.query('GET', `/marketplace/sbnmgmt/inboundshipment/shipmentresult/${requestid}`, data);
+  GetInboundShipmentResult(requestid) {
+    return this.QueryWrapper.query('GET', `/marketplace/sbnmgmt/inboundshipment/shipmentresult/${requestid}`, null);
   }
   GetInboundShipmentList(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/sbnmgmt/inboundshipment/shipmentlist', data);
