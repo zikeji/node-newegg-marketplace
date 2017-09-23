@@ -42,4 +42,6 @@ for (let i = 0; i < classes.length; i++) {
 
 fs.writeFileSync(`${outDir}/index.js`, generateHeadClass(classes));
 
+console.log('Done');
+
 process.exit();
