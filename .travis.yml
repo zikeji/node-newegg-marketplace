@@ -14,3 +14,4 @@ script:
   - rm -rf src/Marketplace
   - cd dev-utils/newegg-marketplace-library-generator && node index.js ../newegg-marketplace-api-docparser/out.json ../../src/Marketplace && cd ../../
   - npm build
+  - npm run test
