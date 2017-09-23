@@ -10,7 +10,7 @@ install:
   - cd dev-utils/newegg-marketplace-api-docparser && npm install && cd ../../
   - cd dev-utils/newegg-marketplace-library-generator && npm install && cd ../../
 script:
-  - cd dev-utils/newegg-marketplace-api-docparser && node index.js NeweggMarketplaceAPIDeveloperGuide_*.pdf out.json cd ../../
+  - cd dev-utils/newegg-marketplace-api-docparser && node index.js NeweggMarketplaceAPIDeveloperGuide_*.pdf out.json && cd ../../
   - rm -rf src/Marketplace
   - cd dev-utils/newegg-marketplace-library-generator && node index.js ../newegg-marketplace-api-docparser/out.json ../../src/Marketplace && cd ../../
   - npm build
