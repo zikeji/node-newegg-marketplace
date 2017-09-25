@@ -40,7 +40,7 @@ This section provides you with the relevant function to use in this library, and
       .toLowerCase()
       .replace(/[^\w\- ]+/g, '')
       .replace(/\s/g, '-')
-      .replace(/\-+$/, '');
+      .replace(/-+$/, '');
   }
 
   _backtotop() {
