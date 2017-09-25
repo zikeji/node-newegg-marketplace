@@ -1,6 +1,6 @@
 [![NPM](https://nodei.co/npm/newegg-marketplace.svg?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/newegg-marketplace/)
 
-[![David](https://img.shields.io/david/zikeji/node-newegg-marketplace.svg)](package.json) [![David](https://img.shields.io/david/dev/zikeji/node-newegg-marketplace.svg)](package.json) [![Travis](https://img.shields.io/travis/zikeji/node-newegg-marketplace.svg)](https://travis-ci.org/zikeji/node-newegg-marketplace) [![Gratipay](https://img.shields.io/gratipay/project/newegg-marketplace.svg)](https://gratipay.com/newegg-marketplace/)
+[![David](https://img.shields.io/david/zikeji/node-newegg-marketplace.svg)](package.json) [![David](https://img.shields.io/david/dev/zikeji/node-newegg-marketplace.svg)](package.json) [![Travis](https://img.shields.io/travis/zikeji/node-newegg-marketplace.svg)](https://travis-ci.org/zikeji/node-newegg-marketplace) [![npm](https://img.shields.io/npm/l/newegg-marketplace.svg)](https://github.com/zikeji/node-newegg-marketplace) [![Join the chat at https://gitter.im/node-newegg-marketplace/Lobby](https://badges.gitter.im/node-newegg-marketplace/Lobby.svg)](https://gitter.im/node-newegg-marketplace/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Gratipay](https://img.shields.io/gratipay/project/newegg-marketplace.svg)](https://gratipay.com/newegg-marketplace/) 
 
 ## Newegg Marketplace API Client
 
