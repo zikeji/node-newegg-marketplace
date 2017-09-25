@@ -49,3 +49,8 @@ Newegg returns very descriptive errors. If you can't figure out how to format th
 #### Wrong JSON Documentation in the Newegg Marketplace API Developer Guide
 
 The current documentation has some errors and at times you'll be forced to go over the XML version of a request in order to figure out how to do the JSON version of the request. Note, even though the request body "requires" the "NeweggAPIRequest" element, you actually need to exclude it in the JSON, it only needs to be there for the XML.
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/zikeji/node-newegg-marketplace/badge.svg?style=beer-square)](https://beerpay.io/zikeji/node-newegg-marketplace)  [![Beerpay](https://beerpay.io/zikeji/node-newegg-marketplace/make-wish.svg?style=flat-square)](https://beerpay.io/zikeji/node-newegg-marketplace?focus=wish)
