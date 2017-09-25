@@ -1,6 +1,6 @@
 {
   "name": "newegg-marketplace",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Newegg Marketplace API client for Node.js",
   "license": "MIT",
   "homepage": "https://github.com/zikeji/node-newegg-marketplace",
@@ -38,6 +38,16 @@
     "prettier-eslint": "^8.1.1",
     "mocha": "^3.5.3"
   },
-  "keywords": ["newegg", "api", "wrapper", "marketplace", "sellers"],
-  "files": ["out/src", "README.md", "LICENSE.md"]
+  "keywords": [
+    "newegg",
+    "api",
+    "wrapper",
+    "marketplace",
+    "sellers"
+  ],
+  "files": [
+    "out/src",
+    "README.md",
+    "LICENSE.md"
+  ]
 }
