@@ -17,3 +17,4 @@ script:
   - cd dev-utils/newegg-marketplace-readme-generator && node index.js ../newegg-marketplace-api-docparser/out.json ../../API.md && cd ../../
   - npm run build
   - npm run test
+  - npm run lint
