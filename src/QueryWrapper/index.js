@@ -48,7 +48,7 @@ export default class QueryWrapper {
         })
         .catch(response => {
           if (response.error && response.error.code && response.error.code === 'ETIMEDOUT') {
-            ++apiUrlIndex;
+            apiUrlIndex += 1;
             if (this._failover && _this._apiUrls[apiUrlIndex]) {
               _this
                 ._query(method, endpoint, data, queryParams, apiUrlIndex)

@@ -20,4 +20,7 @@ export default class OrderMgmt {
   GetOrderInfo(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/ordermgmt/order/orderinfo', data);
   }
+  GetSBNOrderCancellationResponse(ordernumber) {
+    return this.QueryWrapper.query('GET', `/marketplace/ordermgmt/sbnorder/cancellationresult/${ordernumber}`, null);
+  }
 }

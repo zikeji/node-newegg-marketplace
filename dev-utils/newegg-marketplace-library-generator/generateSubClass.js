@@ -14,16 +14,20 @@ export default class ${curClass} {
     let useTemplate = false;
     const queryParams = [];
     out += `  ${functionName}(`;
-    curFunction.params.forEach(param => {
-      out += `${param.identifier}, `;
-      if (param.type === 'url') useTemplate = true;
-      if (param.type === 'queryParam') {
-        queryParams.push(param.identifier);
+    if (curFunction.params.length > 0) {
+      curFunction.params.forEach(param => {
+        out += `${param.identifier}, `;
+        if (param.type === 'url') useTemplate = true;
+        if (param.type === 'queryParam') {
+          queryParams.push(param.identifier);
+        }
+      });
+
+      if (curFunction.method === 'GET') {
+        out = out.slice(0, -2);
       }
-    });
-    if (curFunction.method === 'GET') {
-      out = out.slice(0, -2);
-    } else {
+    }
+    if (curFunction.method !== 'GET') {
       out += 'data';
     }
     out += ') {\n';

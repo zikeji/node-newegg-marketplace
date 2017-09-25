@@ -35,7 +35,7 @@ const data = JSON.parse(fs.readFileSync(jsonPath));
 
 const classes = Object.keys(data.classDef);
 
-for (let i = 0; i < classes.length; i++) {
+for (let i = 0; i < classes.length; i += 1) {
   fs.mkdirSync(`${outDir}/${classes[i]}`);
   fs.writeFileSync(`${outDir}/${classes[i]}/index.js`, generateSubClass(classes[i], data.classDef[classes[i]]));
 }

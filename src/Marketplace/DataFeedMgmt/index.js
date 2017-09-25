@@ -5,7 +5,7 @@ export default class DataFeedMgmt {
     this.QueryWrapper = QueryWrapper;
   }
 
-  DataFeedSchema(RequestType, data) {
+  SubmitFeed(RequestType, data) {
     return this.QueryWrapper.query('POST', '/marketplace/datafeedmgmt/feeds/submitfeed', data, [
       {
         param: 'requesttype',
@@ -15,5 +15,8 @@ export default class DataFeedMgmt {
   }
   GetFeedStatus(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/datafeedmgmt/feeds/status', data);
+  }
+  ProcessingReport(Requestid) {
+    return this.QueryWrapper.query('GET', `/marketplace/datafeedmgmt/feeds/result/${Requestid}`, null);
   }
 }

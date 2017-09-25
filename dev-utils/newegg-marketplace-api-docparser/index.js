@@ -22,7 +22,7 @@ const sectionParser = /^(\d+\.) (.*)$/g;
 const subSectionParser = /^(\d+\.\d+\.) (.*)$/g;
 const resourceInformationParser = /^(PUT|GET|POST|DELETE)\s(\w+) (\w+, \w+) (\w+, \w+)(.*)$/g;
 
-const xsdLineParser = /^API Schema\s>\s(.*)(?:Request|Response)\.xsd\s*$/g;
+const xsdLineParser = /^API Schema\s>\s(.*)(Request|Response|Report)\.xsd\s*$/g;
 
 const apiMethods = [];
 let currentSection;
@@ -68,9 +68,13 @@ const lineHandler = line => {
           // cleanup last run through a method
           if (matchedResourceURL) {
             // not a method if there is no resource URL
-            if (currentApiMethod.subsection.includes(currentSection.section)) {
-              // not a method if the method doesn't belong!
+            if (currentApiMethod.subsection.slice(0, currentSection.section.length) === currentSection.section) {
               currentSection.subsections.push(currentApiMethod);
+            } else if (
+              currentApiMethod.subsection.slice(0, apiMethods[apiMethods.length - 1].section.length) === apiMethods[apiMethods.length - 1].section
+            ) {
+              // some subsections from previous sections will be processed late
+              apiMethods[apiMethods.length - 1].subsections.push(currentApiMethod);
             }
           }
           matchedResourceURL = false;
@@ -110,6 +114,9 @@ const lineHandler = line => {
         const XSD = xsdLineParser.exec(line);
         if (XSD) {
           const sX = XSD[1].split(' > ');
+          if (XSD[2] === 'Report') {
+            sX[sX.length - 1] += 'Report';
+          }
           currentApiMethod.XSD = sX;
         }
       }
@@ -121,7 +128,7 @@ const recursiveFunctionGenerator = (index, subsections, xsdIndex) => {
   if (!xsdIndex) xsdIndex = 1;
   let dupe = false;
   const XSD = subsections[index].XSD;
-  for (let i = 0; i < subsections.length; i++) {
+  for (let i = 0; i < subsections.length; i += 1) {
     if (index !== i) {
       if (subsections[i].XSD[xsdIndex] === XSD[xsdIndex]) {
         dupe = true;
@@ -129,7 +136,8 @@ const recursiveFunctionGenerator = (index, subsections, xsdIndex) => {
     }
   }
   if (dupe) {
-    return recursiveFunctionGenerator(index, subsections, ++xsdIndex);
+    xsdIndex += 1;
+    return recursiveFunctionGenerator(index, subsections, xsdIndex);
   }
   return XSD[xsdIndex];
 };
@@ -164,7 +172,7 @@ const urlParam = /%7B(.*?)%7D/g;
 const getEndpoint = resourceUrl => {
   resourceUrl = url.parse(resourceUrl);
   const parts = resourceUrl.pathname.split('/');
-  for (let i = 0; i < parts.length; i++) {
+  for (let i = 0; i < parts.length; i += 1) {
     const part = urlParam.exec(parts[i]);
     if (part) {
       parts[i] = `$\{${part[1]}}`;
@@ -174,7 +182,7 @@ const getEndpoint = resourceUrl => {
 };
 
 const generateSubSectionSchema = subsections => {
-  for (let i = 0; i < subsections.length; i++) {
+  for (let i = 0; i < subsections.length; i += 1) {
     subsections[i].class = subsections[i].XSD[0];
     subsections[i].function = recursiveFunctionGenerator(i, subsections);
     subsections[i].method = subsections[i].resourceInformation.httpMethod;
@@ -185,7 +193,7 @@ const generateSubSectionSchema = subsections => {
 };
 
 const generateSectionSchema = sections => {
-  for (let i = 0; i < sections.length; i++) {
+  for (let i = 0; i < sections.length; i += 1) {
     sections[i].subsections = generateSubSectionSchema(sections[i].subsections);
   }
   return sections;
@@ -193,8 +201,8 @@ const generateSectionSchema = sections => {
 
 const generateClassDef = sections => {
   const out = {};
-  for (let i = 0; i < sections.length; i++) {
-    for (let ii = 0; ii < sections[i].subsections.length; ii++) {
+  for (let i = 0; i < sections.length; i += 1) {
+    for (let ii = 0; ii < sections[i].subsections.length; ii += 1) {
       const subsection = sections[i].subsections[ii];
       if (!out[subsection.class]) out[subsection.class] = {};
       out[subsection.class][subsection.function] = {
@@ -207,11 +215,20 @@ const generateClassDef = sections => {
   return out;
 };
 
-const finishHandler = () => {
-  const out = {
-    sectionSchema: generateSectionSchema(apiMethods.filter(section => section.subsections.length > 0)),
+const getFinalObject = sections => {
+  const ret = {
+    sectionSchema: null,
+    classDef: null,
   };
-  out.classDef = generateClassDef(out.sectionSchema);
+
+  ret.sectionSchema = generateSectionSchema(sections);
+  ret.classDef = generateClassDef(ret.sectionSchema);
+
+  return ret;
+};
+
+const finishHandler = () => {
+  const out = getFinalObject(apiMethods.filter(section => section.subsections.length > 0));
   fs.writeFile(outPath, JSON.stringify(out), () => {
     console.log('Finished. Writing output to file.');
     fs.unlink('./tmppdftext.txt', () => {
