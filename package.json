@@ -13,7 +13,7 @@
   },
   "main": "./out/src/index.js",
   "scripts": {
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint src/**/*.js dev-utils/**/*.js",
     "test": "mocha tests/unauthorized.js",
     "build": "babel src -d out/src"
   },
@@ -36,18 +36,10 @@
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
     "prettier-eslint": "^8.1.1",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "pdf2json": "^1.1.7",
+    "split": "^1.0.1"
   },
-  "keywords": [
-    "newegg",
-    "api",
-    "wrapper",
-    "marketplace",
-    "sellers"
-  ],
-  "files": [
-    "out/src",
-    "README.md",
-    "LICENSE.md"
-  ]
+  "keywords": ["newegg", "api", "wrapper", "marketplace", "sellers"],
+  "files": ["out/src", "README.md", "LICENSE.md"]
 }

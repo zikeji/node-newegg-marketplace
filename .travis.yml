@@ -7,9 +7,6 @@ before_install:
   - cd dev-utils/newegg-marketplace-api-docparser && wget https://sellerportal.newegg.com/Guideline/Newegg_Marketplace_API_DeveloperGuide.zip && unzip Newegg_Marketplace_API_DeveloperGuide.zip && cd ../../
 install:
   - npm install
-  - cd dev-utils/newegg-marketplace-api-docparser && npm install && cd ../../
-  - cd dev-utils/newegg-marketplace-library-generator && npm install && cd ../../
-  - cd dev-utils/newegg-marketplace-readme-generator && npm install && cd ../../
 script:
   - cd dev-utils/newegg-marketplace-api-docparser && node index.js NeweggMarketplaceAPIDeveloperGuide_*.pdf out.json && cd ../../
   - rm -rf src/Marketplace
