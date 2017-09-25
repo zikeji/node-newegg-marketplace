@@ -13,6 +13,7 @@
   },
   "main": "./out/src/index.js",
   "scripts": {
+    "lint": "eslint src/**/*.js",
     "test": "mocha tests/unauthorized.js",
     "build": "babel src -d out/src"
   },
@@ -37,16 +38,6 @@
     "prettier-eslint": "^8.1.1",
     "mocha": "^3.5.3"
   },
-  "keywords": [
-    "newegg",
-    "api",
-    "wrapper",
-    "marketplace",
-    "sellers"
-  ],
-  "files": [
-    "out/src",
-    "README.md",
-    "LICENSE.md"
-  ]
+  "keywords": ["newegg", "api", "wrapper", "marketplace", "sellers"],
+  "files": ["out/src", "README.md", "LICENSE.md"]
 }

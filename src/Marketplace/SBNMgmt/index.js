@@ -20,4 +20,7 @@ export default class SBNMgmt {
   GetInboundShipmentList(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/sbnmgmt/inboundshipment/shipmentlist', data);
   }
+  GetWarehouseList(data) {
+    return this.QueryWrapper.query('PUT', '/marketplace/sbnmgmt/inboundshipment/warehouse', data);
+  }
 }

@@ -11,4 +11,7 @@ export default class ReportMgmt {
   GetReportStatus(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/reportmgmt/report/status', data);
   }
+  GetReport(data) {
+    return this.QueryWrapper.query('PUT', '/marketplace/reportmgmt/report/result', data);
+  }
 }

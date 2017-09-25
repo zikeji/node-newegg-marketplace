@@ -5,8 +5,8 @@ export default class SellerMgmt {
     this.QueryWrapper = QueryWrapper;
   }
 
-  SellerStatusCheck(domain) {
-    return this.QueryWrapper.query('GET', `/marketplace/${domain}/servicestatus`, null);
+  SellerStatusCheck() {
+    return this.QueryWrapper.query('GET', '/marketplace/sellermgmt/seller/accountstatus', null);
   }
   GetIndustry(industrycode) {
     return this.QueryWrapper.query('GET', '/marketplace/sellermgmt/seller/industry', null, [

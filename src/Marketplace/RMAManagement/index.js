@@ -20,4 +20,7 @@ export default class RMAManagement {
   GetCourtesyRefundStatus(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/servicemgmt/courtesyrefund/requeststatus', data);
   }
+  GetGetCourtesyRefundInfo(data) {
+    return this.QueryWrapper.query('PUT', '/marketplace/servicemgmt/courtesyrefund/info', data);
+  }
 }

@@ -41,4 +41,7 @@ export default class ContentMgmt {
   UpdateInternationalPrice(data) {
     return this.QueryWrapper.query('POST', '/marketplace/contentmgmt/item/international/price', data);
   }
+  ItemWarranty(data) {
+    return this.QueryWrapper.query('POST', '/marketplace/contentmgmt/item/warranty', data);
+  }
 }

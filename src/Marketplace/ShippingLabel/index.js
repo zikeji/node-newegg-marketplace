@@ -20,4 +20,7 @@ export default class ShippingLabel {
   GetPackageList(data) {
     return this.QueryWrapper.query('PUT', '/marketplace/shippingservice/shippinglabel/packagelist', data);
   }
+  GetShippingLabels(data) {
+    return this.QueryWrapper.query('PUT', '/marketplace/shippingservice/shippinglabel/shippinglabels', data);
+  }
 }

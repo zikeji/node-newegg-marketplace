@@ -44,7 +44,7 @@ This section provides you with the relevant function to use in this library, and
   }
 
   _backtotop() {
-    return `[^ back to top](#table-of-contents)\n`;
+    return '[^ back to top ^](#table-of-contents)\n';
   }
 
   _readmeSection(section) {
