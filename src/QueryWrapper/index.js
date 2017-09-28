@@ -3,7 +3,7 @@
 import rp from 'request-promise-native';
 
 export default class QueryWrapper {
-  constructor(sellerId, authorization, secretKey, failover) {
+  constructor(sellerId, authorization, secretKey, timeout, failover) {
     this._sellerId = sellerId;
     this._authorization = authorization;
     this._secretKey = secretKey;
@@ -11,7 +11,7 @@ export default class QueryWrapper {
     this._apiUrls = ['https://api.newegg.com', 'https://api01.newegg.com', 'https://api02.newegg.com'];
     this._apiVersion = 304;
     this._rp = rp.defaults({
-      timeout: 15 * 1000,
+      timeout: timeout || 15 * 1000,
       headers: {
         Authorization: this._authorization,
         SecretKey: this._secretKey,
@@ -51,7 +51,7 @@ export default class QueryWrapper {
             apiUrlIndex += 1;
             if (this._failover && _this._apiUrls[apiUrlIndex]) {
               _this
-                ._query(method, endpoint, data, queryParams, apiUrlIndex)
+                .query(method, endpoint, data, queryParams, apiUrlIndex)
                 .then(resolve)
                 .catch(reject);
             } else {

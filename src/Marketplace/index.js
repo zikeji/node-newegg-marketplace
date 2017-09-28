@@ -11,8 +11,8 @@ import ReportMgmt from './ReportMgmt';
 import SBNMgmt from './SBNMgmt';
 
 export default class NeweggMarketplaceAPI {
-  constructor(sellerId, authorization, secretKey) {
-    this.QueryWrapper = new QueryWrapper(sellerId, authorization, secretKey);
+  constructor(sellerId, authorization, secretKey, timeout, failover) {
+    this.QueryWrapper = new QueryWrapper(sellerId, authorization, secretKey, timeout, failover);
     this.SellerMgmt = new SellerMgmt(this.QueryWrapper);
     this.ContentMgmt = new ContentMgmt(this.QueryWrapper);
     this.OrderMgmt = new OrderMgmt(this.QueryWrapper);
