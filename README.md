@@ -12,9 +12,12 @@ You can find a reference containing each method implemented by this library in [
 
 All this library does is wrap the requests and expose functions that (can make) your code prettier and more readable. It does not error check or validate to any of the standards as the Newegg developer guide provides, nor does it do formatting (outside of URL parameters) for the data you're giving to Newegg.
 
+### Timeout
+
+Query timeout is 15s by default, you can customize this by passing your own ms for the timeout as a 4th parameter in the constructor.
 ### Failover
 
-This plugin will handle failover, per **8.2. Failover Endpoints for API Service** in the developer guide. You can disable this functionality by passing a 4th parameter, `false`, when constructing `NeweggMarketplaceAPI`. Failover functionality isn't smart, it works per request.
+This plugin will handle failover, per **8.2. Failover Endpoints for API Service** in the developer guide. You can disable this functionality by passing a 5th parameter, `false`, when constructing `NeweggMarketplaceAPI`. Failover functionality isn't smart, it works per request.
 
 ### Example
 ```javascript
