@@ -1,6 +1,6 @@
 {
   "name": "newegg-marketplace",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Newegg Marketplace API client for Node.js",
   "license": "MIT",
   "homepage": "https://github.com/zikeji/node-newegg-marketplace",
